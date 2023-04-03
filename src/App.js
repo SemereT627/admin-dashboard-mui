@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Settings } from "@material-ui/icons";
+import NotistackProvider from "./components/NotistackProvider";
+import RtlLayout from "./components/RtlLayout";
+import ThemeLocalization from "./components/ThemeLocalization";
+import ThemePrimaryColor from "./components/ThemePrimaryColor";
+import ThemeConfig from "./theme";
+import ScrollToTop from "./components/ScrollToTop";
+import Router from "./routes";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeConfig>
+      <ThemePrimaryColor>
+        <ThemeLocalization>
+          <RtlLayout>
+            <NotistackProvider>
+              <Settings />
+              <ScrollToTop />
+              <Router />
+            </NotistackProvider>
+          </RtlLayout>
+        </ThemeLocalization>
+      </ThemePrimaryColor>
+    </ThemeConfig>
   );
 }
-
-export default App;

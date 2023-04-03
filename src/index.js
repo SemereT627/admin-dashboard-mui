@@ -1,14 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import "./locales/i18n";
+
+import App from "./App";
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import reportWebVitals from "./reportWebVitals";
+import { HelmetProvider } from "react-helmet-async";
+import { LocalizationProvider } from "@material-ui/lab";
+import { SettingsProvider } from "./contexts/SettingsContext";
+import { BrowserRouter } from "react-router-dom";
+import { CollapseDrawerProvider } from "./contexts/CollapseDrawerContext";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <HelmetProvider>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <SettingsProvider>
+        <CollapseDrawerProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </CollapseDrawerProvider>
+      </SettingsProvider>
+    </LocalizationProvider>
+  </HelmetProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
