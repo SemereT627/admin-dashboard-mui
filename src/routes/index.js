@@ -4,8 +4,6 @@ import { Navigate, useRoutes, useLocation } from "react-router-dom";
 import DashboardLayout from "../layouts/dashboard";
 import LogoOnlyLayout from "../layouts/LogoOnlyLayout";
 
-// import RoleBasedGuard from '../guards/RoleBasedGuard';
-
 import LoadingScreen from "../components/LoadingScreen";
 
 const Loadable = (Component) => (props) => {
@@ -59,8 +57,16 @@ export default function Router() {
         </>
       ),
       children: [
-        { path: "/", element: <Navigate to="/dashboard/app" replace /> },
+        {
+          path: "/dashboard",
+          element: <Navigate to="/dashboard/app" replace />,
+        },
+        { path: "app", element: <DashboardApp /> },
       ],
+    },
+    {
+      path: "/",
+      element: <Navigate to="/dashboard/app" replace />,
     },
     { path: "*", element: <Navigate to="/404" replace /> },
   ]);
@@ -70,3 +76,8 @@ export default function Router() {
 
 // Authentication
 const Login = Loadable(lazy(() => import("../pages/auth/Login")));
+
+// Dashboard
+const DashboardApp = Loadable(
+  lazy(() => import("../pages/dashboard/DashboardApp"))
+);
